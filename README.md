@@ -1,4 +1,4 @@
 BlueDerby
 =========
 
-brms demo
+brms demonstration
