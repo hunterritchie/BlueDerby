@@ -1,6 +1,7 @@
 package bluederby;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Room
 {
@@ -10,6 +11,7 @@ public class Room
     private boolean m_nearElevator;
     private boolean m_nearIceMachine;
     private float m_roomTypeFactor;
+    private ArrayList<Amenity> m_amenities;
 
     public int getRoomNumber()
     {
@@ -29,7 +31,6 @@ public class Room
         m_floor = floor;
     }
 
-
     public BedType getBedType()
     {
         return m_bedType;
@@ -38,7 +39,6 @@ public class Room
     {
         m_bedType = bedType;
     }
-
 
     public boolean getNearElevator()
     {
@@ -49,7 +49,6 @@ public class Room
         m_nearElevator = nearElevator;
     }
 
-
     public boolean getNearIceMachine()
     {
         return m_nearIceMachine;
@@ -59,7 +58,6 @@ public class Room
         m_nearIceMachine = nearIceMachine;
     }
 
-
     public float getRoomTypeFactor()
     {
         return m_roomTypeFactor;
@@ -67,6 +65,15 @@ public class Room
     public void setRoomTypeFactor(float roomTypeFactor)
     {
         m_roomTypeFactor = roomTypeFactor;
+    }
+
+    public ArrayList getAmenities()
+    {
+        return m_amenities;
+    }
+    public void setAmenities(ArrayList amenities)
+    {
+        m_amenities = amenities;
     }
 
 }
