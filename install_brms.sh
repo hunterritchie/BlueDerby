@@ -1,7 +1,8 @@
 #!/bin/sh 
 DEMO="Blue Derby"
 
-TORQUEBOX_HOME=/home/hunter/.rvm/gems/jruby-1.7.4@global/gems/torquebox-server-2.3.1-java
+# XXX set this in your environment
+#TORQUEBOX_HOME=/home/hunter/.rvm/gems/jruby-1.7.4@global/gems/torquebox-server-2.3.1-java
 
 JBOSS_HOME=$TORQUEBOX_HOME/jboss/
 SERVER_DIR=$JBOSS_HOME/standalone/deployments/
