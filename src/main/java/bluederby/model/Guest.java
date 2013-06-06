@@ -1,32 +1,48 @@
 package bluederby;
 
-import java.io.Serializable;
-
-
 public class Guest
 {
-    private String m_name;
-    private int m_reservationId;
+    private int m_guestId;
+    private String m_lastName;
+    private String m_firstName;
     private int m_groupId;
     private int m_memberId;
 
-
-    public String getName()
+    public Guest(String lastName, String firstName, int groupId, int memberId)
     {
-        return m_name;
-    }
-    public void setName(String name)
-    {
-        m_name = name;
+        m_lastName = lastName;
+        m_firstName = firstName;
+        m_groupId = groupId;
+        m_memberId = memberId;
     }
 
-    public int getReservationId()
+    public Guest() {}
+
+    public int getGuestId()
     {
-        return m_reservationId;
+        return m_guestId;
     }
-    public void setReservationId(int reservationId)
+    public void setGuestId(int guestId)
     {
-        m_reservationId = reservationId;
+        m_guestId = guestId;
+    }
+
+    public String getLastName()
+    {
+        return m_lastName;
+    }
+    public void setLastName(String lastName)
+    {
+        m_lastName = lastName;
+    }
+
+    public String getFirstName()
+    {
+        return m_firstName;
+    }
+    public void setFirstName(String firstName)
+    {
+        m_firstName = firstName;
     }
 
     public int getGroupId()
