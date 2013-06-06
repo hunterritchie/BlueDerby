@@ -35,15 +35,16 @@ echo "Setting up the JBoss Enterprise EAP 6 ${DEMO} environment..."
 echo
 
 # make some checks first before proceeding.	
-if [[ -r $SRC_DIR/$EAP || -L $SRC_DIR/$EAP ]]; then
-		echo EAP sources are present...
-		echo
-else
-		echo Need to download $EAP package from the Customer Support Portal 
-		echo and place it in the $SRC_DIR directory to proceed...
-		echo
-		exit
-fi
+#
+#if [[ -r $SRC_DIR/$EAP || -L $SRC_DIR/$EAP ]]; then
+#		echo EAP sources are present...
+#		echo
+#else
+#		echo Need to download $EAP package from the Customer Support Portal 
+#		echo and place it in the $SRC_DIR directory to proceed...
+#		echo
+#		exit
+#fi
 
 # Create the target directory if it does not already exist.
 if [ ! -x target ]; then
