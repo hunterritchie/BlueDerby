@@ -1,6 +1,5 @@
 package bluederby;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Room
@@ -10,8 +9,32 @@ public class Room
     private BedType m_bedType;
     private boolean m_nearElevator;
     private boolean m_nearIceMachine;
-    private float m_roomTypeFactor;
+    private double m_roomTypeFactor;
     private ArrayList<Amenity> m_amenities;
+
+    public Room(int roomNumber, int floor, BedType bedType, boolean nearElevator, boolean nearIceMachine, double roomTypeFactor)
+    {
+        m_roomNumber = roomNumber;
+        m_floor = floor;
+        m_bedType = bedType;
+        m_nearElevator = nearElevator;
+        m_nearIceMachine = nearIceMachine;
+        m_roomTypeFactor = roomTypeFactor;
+    }
+
+
+    public Room(BedType bedType, boolean nearElevator, boolean nearIceMachine, double roomTypeFactor)
+    {
+        m_bedType = bedType;
+        m_nearElevator = nearElevator;
+        m_nearIceMachine = nearIceMachine;
+        m_roomTypeFactor = roomTypeFactor;
+    }
+
+    public Room()
+    {
+        m_amenities = new ArrayList<Amenity>();
+    }
 
     public int getRoomNumber()
     {
@@ -58,22 +81,26 @@ public class Room
         m_nearIceMachine = nearIceMachine;
     }
 
-    public float getRoomTypeFactor()
+    public double getRoomTypeFactor()
     {
         return m_roomTypeFactor;
     }
-    public void setRoomTypeFactor(float roomTypeFactor)
+    public void setRoomTypeFactor(double roomTypeFactor)
     {
         m_roomTypeFactor = roomTypeFactor;
     }
 
-    public ArrayList getAmenities()
+    public ArrayList<Amenity> getAmenities()
     {
         return m_amenities;
     }
-    public void setAmenities(ArrayList amenities)
+    public void setAmenities(ArrayList<Amenity> amenities)
     {
         m_amenities = amenities;
+    }
+    public void addAmenity(Amenity amenity)
+    {
+        m_amenities.add(amenity);
     }
 
 }

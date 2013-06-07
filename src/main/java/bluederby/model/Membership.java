@@ -1,20 +1,26 @@
 package bluederby;
 
-import java.io.Serializable;
-
 public class Membership
 {
-    private int m_memberId;
+    private int m_membershipId;
     private MembershipType m_membershipType;
-    private float m_memberDiscount;
+    private double m_memberDiscount;
 
-    public int getMemberId()
+    public Membership(MembershipType membershipType, double memberDiscount)
     {
-        return m_memberId;
+        m_membershipType = membershipType;
+        m_memberDiscount = memberDiscount;
     }
-    public void setMemberId(int memberId)
+
+    public Membership() {}
+
+    public int getMembershipId()
     {
-        m_memberId = memberId;
+        return m_membershipId;
+    }
+    public void setMembershipId(int membershipId)
+    {
+        m_membershipId = membershipId;
     }
 
     public MembershipType getMembershipType()
@@ -26,11 +32,11 @@ public class Membership
         m_membershipType = membershipType;
     }
 
-    public float getMemberDiscount()
+    public double getMemberDiscount()
     {
         return m_memberDiscount;
     }
-    public void setMemberDiscount(float memberDiscount)
+    public void setMemberDiscount(double memberDiscount)
     {
         m_memberDiscount = memberDiscount;
     }

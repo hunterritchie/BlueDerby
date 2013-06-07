@@ -1,7 +1,7 @@
 package bluederby;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Hotel
 {
@@ -16,86 +16,226 @@ public class Hotel
     private ArrayList<Membership> m_memberships;
     private ArrayList<Group> m_groups;
 
+    public Hotel(String name, String address, int baseRoomRate)
+    {
+        m_name = name;
+        m_address = address;
+        m_baseRoomRate = baseRoomRate;
 
+        m_rooms = new ArrayList<Room>();
+        m_reservations = new ArrayList<Reservation>();
+        m_guests = new ArrayList<Guest>();
+        m_memberships = new ArrayList<Membership>();
+        m_groups = new ArrayList<Group>();
+
+        setupRooms();
+        setupMemberships();
+        setupGroups();
+        setupGuests();
+        setupReservations();
+
+    }
+
+    // default Hotel configuration
+    private void setupRooms()
+    {
+        for(int floor=1; floor<=4; ++floor)
+        {
+            for(int room=1; room<=5; ++room)
+            {
+                int roomNumber = (floor*100) + room;
+
+                boolean nearElevator = false;
+                if (1 == room) { nearElevator = true; }
+
+                boolean nearIceMachine = false;
+                if (5 == room) { nearIceMachine = true; }
+
+                BedType bedType = BedType.values()[room % BedType.values().length];
+
+                double roomTypeFactor = 0;
+                switch (bedType) 
+                {
+                case QUEEN:
+                    roomTypeFactor = 1.0; 
+                    break;
+                case TWO_QUEEN:
+                    roomTypeFactor = 1.1; 
+                    break;
+                case KING:
+                    roomTypeFactor = 1.2; 
+                    break;
+                default:
+                }
+
+                Room aRoom = new Room(roomNumber, floor, bedType, nearElevator, nearIceMachine, roomTypeFactor);
+                addRoom(aRoom);
+            }
+        }
+    }
+
+    private void setupReservations()
+    {
+        int guestId = 0;
+        for (Guest guest : m_guests)
+        {
+            if ("Doe" == guest.getLastName())
+            {
+                guestId = guest.getGuestId();
+            }
+        }
+        
+        Calendar startDate = Calendar.getInstance();
+        Calendar endDate = startDate;
+        endDate.add(Calendar.DAY_OF_YEAR, 7);
+
+        Reservation res = new Reservation(guestId, BedType.QUEEN, getBaseRoomRate(), false, startDate, endDate);
+        addReservation(res);
+    }
+
+    private void setupGuests()
+    {
+        Guest guest = new Guest("Doe", "John", 0, 0);
+        addGuest(guest);
+    }
+
+    private void setupMemberships()
+    {
+        for(int i=0; i < MembershipType.values().length; ++i)
+        {
+            MembershipType membershipType = MembershipType.values()[i];
+            double memberDiscount = 0;
+            switch (membershipType)
+            {
+                case SILVER:
+                    memberDiscount = 0.90;
+                    break;
+                case GOLD:
+                    memberDiscount = 0.85;
+                    break;
+                case PLATINUM:
+                    memberDiscount = 0.80;
+                    break;
+                case AAA:
+                    memberDiscount = 0.95;
+                    break;
+                case SENIOR:
+                    memberDiscount = 0.95;
+                    break;
+                default:
+            }
+
+            Membership membership = new Membership(membershipType, memberDiscount);
+            addMembership(membership);
+        }
+    }
+
+    private void setupGroups()
+    {
+        String groupName = "Brigands";
+        double groupRateFactor = 0.70;
+        
+        Group group = new Group(groupName, groupRateFactor);
+        addGroup(group);
+
+        groupName = "Redskins";
+        groupRateFactor = 0.80;
+
+        group = new Group(groupName, groupRateFactor);
+        addGroup(group);
+    }
+
+
+    // accessors
     public String getName()
     {
         return m_name;
-    }
-    public void setName(String name)
-    {
-        m_name = name;
     }
 
     public String getAddress()
     {
         return m_address;
     }
-    public void setAddress(String address)
-    {
-        m_address = address;
-    }
 
     public int getBaseRoomRate()
     {
         return m_baseRoomRate;
-    }
-    public void setBaseRoomRate(int baseRoomRate)
-    {
-        m_baseRoomRate = baseRoomRate;
     }
 
     public int getNumberOfRooms()
     {
         return m_numberOfRooms;
     }
-    public void setNumberOfRooms(int numberOfRooms)
+    private void setNumberOfRooms(int numberOfRooms)
     {
         m_numberOfRooms = numberOfRooms;
     }
 
-    public ArrayList getRooms()
+    public ArrayList<Room> getRooms()
     {
         return m_rooms;
     }
-    public void setRooms(ArrayList rooms)
-    {
-        m_rooms = rooms;
-    }
 
-    public ArrayList getReservations()
+    public ArrayList<Reservation> getReservations()
     {
         return m_reservations;
     }
-    public void setReservations(ArrayList reservations)
-    {
-        m_reservations = reservations;
-    }
 
-    public ArrayList getGuests()
+    public ArrayList<Guest> getGuests()
     {
         return m_guests;
     }
-    public void setGuests(ArrayList guests)
-    {
-        m_guests = guests;
-    }
 
-    public ArrayList getMemberships()
+    public ArrayList<Membership> getMemberships()
     {
         return m_memberships;
     }
-    public void setMemberships(ArrayList memberships)
-    {
-        m_memberships = memberships;
-    }
 
-    public ArrayList getGroups()
+    public ArrayList<Group> getGroups()
     {
         return m_groups;
     }
-    public void setGroups(ArrayList groups)
+
+
+    // mutators
+    public void addRoom(Room room)
     {
-        m_groups = groups;
+        int numberOfRooms = m_rooms.size();
+        ++numberOfRooms;
+        setNumberOfRooms(numberOfRooms);
+        m_rooms.add(room);
+    }
+
+    public void addReservation(Reservation reservation)
+    {
+        int numberOfReservations = m_reservations.size();
+        ++numberOfReservations;
+        reservation.setReservationId(numberOfReservations);
+        m_reservations.add(reservation);
+    }
+
+    public void addGuest(Guest guest)
+    {
+        int numberOfGuests = m_guests.size();
+        ++numberOfGuests;
+        guest.setGuestId(numberOfGuests);
+        m_guests.add(guest);
+    }
+
+    public void addMembership(Membership membership)
+    {
+        int numberOfMemberships = m_memberships.size();
+        ++numberOfMemberships;
+        membership.setMembershipId(numberOfMemberships);
+        m_memberships.add(membership);
+    }
+
+    public void addGroup(Group group)
+    {
+        int numberOfGroups = m_groups.size();
+        ++numberOfGroups;
+        group.setGroupId(numberOfGroups);
+        m_groups.add(group);
     }
 
 }

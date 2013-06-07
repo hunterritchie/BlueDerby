@@ -1,12 +1,18 @@
 package bluederby;
 
-import java.io.Serializable;
-
 public class Group
 {
-    private int m_groupId;
     private String m_groupName;
-    private float m_groupRateFactor;
+    private int m_groupId;
+    private double m_groupRateFactor;
+
+    public Group(String groupName, double groupRateFactor)
+    {
+        m_groupName = groupName;
+        m_groupRateFactor = groupRateFactor;
+    }
+
+    public Group() {}
 
     public int getGroupId()
     {
@@ -26,11 +32,11 @@ public class Group
         m_groupName = groupName;
     }
 
-    public float getGroupRateFactor()
+    public double getGroupRateFactor()
     {
         return m_groupRateFactor;
     }
-    public void setGroupRateFactor(float groupRateFactor)
+    public void setGroupRateFactor(double groupRateFactor)
     {
         m_groupRateFactor = groupRateFactor;
     }

@@ -2,17 +2,43 @@
     
     <target name="clean">
         <delete dir="build"/>
+        <delete dir="reports"/>
     </target>
 
     <target name="compile">
         <mkdir dir="build/classes"/>
-        <javac srcdir="src" destdir="build/classes" includeantruntime="false"/>
+        <javac srcdir="src" destdir="build/classes" debug="true" debuglevel="lines,source" includeantruntime="false">
+            <compilerarg value="-Xlint:unchecked"/>
+            <classpath>
+                <pathelement location="/usr/share/java/junit.jar"/>
+            </classpath>
+        </javac>
     </target>
 
-    <target name="jar">
+    <target name="jar" depends="compile">
         <mkdir dir="build/jar"/>
         <jar destfile="build/jar/BlueDerby.jar" basedir="build/classes">
         </jar>
+    </target>
+
+    <target name="test" depends="compile,jar">
+        <mkdir dir="reports"/>
+        <junit printsummary="yes" haltonfailure="no">
+            <classpath>
+                <pathelement location="/usr/share/java/junit.jar"/>
+                <pathelement location="/usr/share/java/ant/ant-junit.jar"/>
+                <pathelement location="build/jar/BlueDerby.jar"/>
+                <pathelement location="./build/jar/BlueDerby.jar"/>
+            </classpath>
+
+            <formatter type="plain" usefile="false"/>
+
+            <batchtest fork="yes">
+                <fileset dir="src/test/java/bluederby/model">
+                    <include name="**/*Test.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
     </target>
 
 </project>
