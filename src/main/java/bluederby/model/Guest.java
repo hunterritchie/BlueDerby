@@ -6,14 +6,14 @@ public class Guest
     private String m_lastName;
     private String m_firstName;
     private int m_groupId;
-    private int m_memberId;
+    private int m_membershipId;
 
-    public Guest(String lastName, String firstName, int groupId, int memberId)
+    public Guest(String lastName, String firstName, int groupId, int membershipId)
     {
         m_lastName = lastName;
         m_firstName = firstName;
         m_groupId = groupId;
-        m_memberId = memberId;
+        m_membershipId = membershipId;
     }
 
     public Guest() {}
@@ -54,13 +54,13 @@ public class Guest
         m_groupId = groupId;
     }
 
-    public int getMemberId()
+    public int getMembershipId()
     {
-        return m_memberId;
+        return m_membershipId;
     }
-    public void setMemberId(int memberId)
+    public void setMembershipId(int membershipId)
     {
-        m_memberId = memberId;
+        m_membershipId = membershipId;
     }
 
 }

@@ -101,7 +101,7 @@ public class Hotel
 
     private void setupMemberships()
     {
-        for(int i=1; i<=MembershipType.values().length; ++i)
+        for(int i=0; i < MembershipType.values().length; ++i)
         {
             MembershipType membershipType = MembershipType.values()[i];
             double memberDiscount = 0;
