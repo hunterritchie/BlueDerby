@@ -9,6 +9,7 @@
 	<property name="build.dir" value="build" />
 	<property name="build.dir.main" value="${build.dir}/classes" />
 	<property name="build.test" value="${build.dir}/classes-test" />
+	<property name="build.jar" value="${build.dir}/jar" />
 	<path id="class.path.main">
 	  <fileset dir="${drools.lib.home}" includes="**/*.jar"/>
 	</path >
@@ -54,8 +55,8 @@
     </target>
 
     <target name="jar" depends="compile">
-        <mkdir dir="build/jar"/>
-        <jar destfile="build/jar/BlueDerby.jar" basedir="build/classes"/>
+        <mkdir dir="${build.jar}"/>
+        <jar destfile="${build.jar}/BlueDerby.jar" basedir="${build.dir.main}"/>
     </target>
 
     <target name="test" depends="compile">
