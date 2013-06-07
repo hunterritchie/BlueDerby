@@ -1,0 +1,7 @@
+#The place to find drools libs
+drools.lib.home=/home/jeff.cantrill/projects/redhat/brms/brms-workshop/software/brms-standalone-5.3.1/jboss-as/server/default/deploy/jboss-brms.war/WEB-INF/lib
+
+#The place to find third-party java libs
+java.lib.home=/usr/share/java
+
+ant.junit.home=/opt/eclipse-juno/plugins/org.apache.ant_1.8.3.v201301120609/lib/

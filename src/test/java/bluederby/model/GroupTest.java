@@ -1,10 +1,13 @@
 
+package bluederby.model;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.Ignore;
 
-import bluederby.Group;
+import bluederby.model.Group;
+
 
 public class GroupTest
 {

@@ -1,4 +1,4 @@
-
+package bluederby.model;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -6,9 +6,9 @@ import org.junit.Ignore;
 
 import java.util.ArrayList;
 
-import bluederby.Room;
-import bluederby.Amenity;
-import bluederby.BedType;
+import bluederby.model.Room;
+import bluederby.model.Amenity;
+import bluederby.model.BedType;
 
 public class RoomTest
 {

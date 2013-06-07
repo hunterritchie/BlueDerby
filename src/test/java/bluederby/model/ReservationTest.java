@@ -1,4 +1,4 @@
-
+package bluederby.model;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -7,8 +7,8 @@ import org.junit.Ignore;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import bluederby.Reservation;
-import bluederby.BedType;
+import bluederby.model.Reservation;
+import bluederby.model.BedType;
 
 public class ReservationTest
 {
