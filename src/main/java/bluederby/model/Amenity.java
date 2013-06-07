@@ -1,4 +1,4 @@
-package bluederby;
+package bluederby.model;
 
 public enum Amenity
 {

@@ -1,11 +1,11 @@
-
+package bluederby.model;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.Ignore;
 
-import bluederby.Membership;
-import bluederby.MembershipType;
+import bluederby.model.Membership;
+import bluederby.model.MembershipType;
 
 public class MembershipTest
 {
