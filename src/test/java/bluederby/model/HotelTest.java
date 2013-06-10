@@ -1,10 +1,10 @@
-
+package bluederby.model;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.Ignore;
 
-import bluederby.Hotel;
+import bluederby.model.Hotel;
 
 public class HotelTest
 {

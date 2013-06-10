@@ -1,4 +1,4 @@
-package bluederby;
+package bluederby.model;
 
 import java.util.ArrayList;
 
