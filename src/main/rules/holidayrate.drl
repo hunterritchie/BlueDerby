@@ -1,0 +1,9 @@
+//created on: Jun 11, 2013
+package bluederby.hotelrules
+
+rule "holidayrate"
+    when
+       	reservation : Reservation(getIsHoliday()==true)
+    then
+        modify(reservation) {setCalculatedRate(reservation.getBaseRate()*reservation.getHolidayRateMultiplier())};
+end
