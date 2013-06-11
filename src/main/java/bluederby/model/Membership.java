@@ -12,7 +12,9 @@ public class Membership
         m_memberDiscount = memberDiscount;
     }
 
-    public Membership() {}
+    public Membership() {
+    	this(MembershipType.NONE,0.0);
+    }
 
     public int getMembershipId()
     {
@@ -40,6 +42,13 @@ public class Membership
     {
         m_memberDiscount = memberDiscount;
     }
+
+	public void setStatus(MembershipType status) {
+		m_membershipType = status;
+	}
+	public MembershipType getStatus() {
+		return m_membershipType;
+	}
 
 }
 

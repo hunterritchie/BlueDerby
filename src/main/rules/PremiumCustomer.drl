@@ -1,0 +1,33 @@
+
+package bluederby.roomrates
+
+import bluederby.model.Guest;
+import bluederby.model.Membership;
+import bluederby.model.MembershipType;
+import bluederby.model.Reservation;
+
+rule "Silver Members"
+
+    when
+        $reservation: Reservation(guest.membership.membershipType == MembershipType.SILVER)
+    then
+        $reservation.setRate((int)($reservation.getRate() * .9));
+end
+
+rule "Gold Members"
+
+    when
+        $reservation: Reservation(guest.membership.membershipType == MembershipType.GOLD)
+    then
+        $reservation.setRate((int)($reservation.getRate() * .85));
+end
+
+
+rule "Platinum Members"
+
+    when
+        $reservation: Reservation(guest.membership.membershipType == MembershipType.PLATINUM)
+    then
+        $reservation.setRate((int)($reservation.getRate() * .8));
+end
+

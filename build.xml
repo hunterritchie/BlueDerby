@@ -17,6 +17,7 @@
 	<path id="class.path.test">
 	  <pathelement path="${build.test}"/>
 	  <pathelement path="${build.dir.main}"/>
+	  <pathelement path="src/main/rules"/>
 	  <path refid="class.path.main"/>
       <pathelement location="${java.lib.home}/junit.jar" /> 
 	</path >
@@ -56,6 +57,10 @@
 
     <target name="jar" depends="compile">
         <mkdir dir="${build.jar}"/>
+        <mkdir dir="${build.dir.main}/META-INF"/>
+    	<copy todir="${build.dir.main}/META-INF">
+    		<fileset dir="${source.dir}/META-INF" includes="**/*" />
+    	</copy>
         <jar destfile="${build.jar}/BlueDerby.jar" basedir="${build.dir.main}"/>
     </target>
 

@@ -8,6 +8,8 @@ import org.drools.builder.KnowledgeBuilderErrors;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
 import org.drools.io.ResourceFactory;
+import org.drools.runtime.StatefulKnowledgeSession;
+import org.drools.runtime.StatelessKnowledgeSession;
 
 public class KnowledgeBaseService {
 
@@ -22,15 +24,9 @@ public class KnowledgeBaseService {
 	private KnowledgeBaseService() {
 		try{
 			KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-			kbuilder.add(ResourceFactory.newClassPathResource("policyquote.package"), ResourceType.DRL);
-			hasErrors(kbuilder);
-			kbuilder.add(ResourceFactory.newClassPathResource("riskyadults.drl"), ResourceType.DRL);
-			hasErrors(kbuilder);
-			kbuilder.add(ResourceFactory.newClassPathResource("safeadults.drl"), ResourceType.DRL);
-			hasErrors(kbuilder);
-			kbuilder.add(ResourceFactory.newClassPathResource("riskyyouths.drl"), ResourceType.DRL);
-			hasErrors(kbuilder);
-			kbuilder.add(ResourceFactory.newClassPathResource("safeyouths.drl"), ResourceType.DRL);
+//			kbuilder.add(ResourceFactory.newClassPathResource("policyquote.package"), ResourceType.DRL);
+//			hasErrors(kbuilder);
+			kbuilder.add(ResourceFactory.newClassPathResource("PremiumCustomer.drl"), ResourceType.DRL);
 			hasErrors(kbuilder);
 			knowledgeBase = KnowledgeBaseFactory.newKnowledgeBase();
 			hasErrors(kbuilder);
@@ -39,6 +35,13 @@ public class KnowledgeBaseService {
 			System.err.println("Error initializing KnowledgeBaseServerce:");
 			e.printStackTrace(System.err);
 		}
+	}
+	
+	public StatelessKnowledgeSession newStatelessSession(){
+		return knowledgeBase.newStatelessKnowledgeSession();
+	}
+	public StatefulKnowledgeSession newStatefulSession() {
+		return knowledgeBase.newStatefulKnowledgeSession();
 	}
 	
 	private void hasErrors(KnowledgeBuilder kbuilder) throws Exception {
