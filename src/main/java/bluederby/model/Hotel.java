@@ -89,7 +89,7 @@ public class Hotel
         Calendar endDate = startDate;
         endDate.add(Calendar.DAY_OF_YEAR, 7);
 
-        Reservation res = new Reservation(guestId, BedType.QUEEN, getBaseRoomRate(), false, startDate, endDate);
+        Reservation res = new Reservation(guestId, BedType.QUEEN, getBaseRoomRate(), false, startDate, endDate, false);
         addReservation(res);
     }
 
