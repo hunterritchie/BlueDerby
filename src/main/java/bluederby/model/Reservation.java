@@ -15,29 +15,30 @@ public class Reservation
     private Guest m_guest;
     private boolean m_isHoliday;
     
-    private double m_holidayRateMulitplier = 0.1;
+    private double m_holidayRateMultiplier = 0.1;
 
     public Reservation(int guestId, BedType bedType, double baseRate, boolean isGuaranteed, Calendar startDate, Calendar endDate, boolean isHoliday) 
     {
         m_guestId = guestId;
         m_bedType = bedType;
         m_baseRate = baseRate;
-        m_calculatedRate = baseRate;
         m_isGuaranteed = isGuaranteed;
         m_startDate = startDate;
         m_endDate = endDate;
         m_isHoliday = isHoliday;
+        m_calculatedRate = baseRate;
     }
 
     public Reservation() {}
 
-    public Reservation(Guest guest, BedType bedType, double rate, boolean isGuaranteed, Calendar startDate, Calendar endDate) {
+    public Reservation(Guest guest, BedType bedType, double baseRate, boolean isGuaranteed, Calendar startDate, Calendar endDate, boolean isHoliday) {
     	setGuest(guest);
     	m_bedType = bedType;
-    	m_baseRate = rate;
+    	m_baseRate = baseRate;
     	m_isGuaranteed = isGuaranteed;
     	m_startDate = startDate;
     	m_endDate = endDate;
+        m_calculatedRate = baseRate;
 	}
 
 	public int getReservationId()
@@ -63,15 +64,17 @@ public class Reservation
         return m_baseRate;
     }
     
-    public void setCalculatedRate(double calculatedRate)
-    {
-        m_calculatedRate = calculatedRate;
-    }
     public double getCalculatedRate()
     {
-        return m_calculatedRate;
+    	return m_calculatedRate;
     }
-    public void setBaseRate(int baseRate)
+
+    public void setCalculatedRate(double calculatedRate)
+    {
+    	m_calculatedRate = calculatedRate;
+    }
+    
+    public void setBaseRate(double baseRate)
     {
         m_baseRate = baseRate;
     }
@@ -122,7 +125,7 @@ public class Reservation
     }
     public double getHolidayRateMulitplier()
     {
-       return m_holidayRateMulitplier;
+       return m_holidayRateMultiplier;
     }
 
 	public Guest getGuest() {
@@ -132,6 +135,6 @@ public class Reservation
 	public void setGuest(Guest m_guest) {
 		this.m_guest = m_guest;
 	}
-
+	
 }
 

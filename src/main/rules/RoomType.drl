@@ -1,0 +1,33 @@
+
+package bluederby.roomrates
+
+import bluederby.model.Hotel;
+import bluederby.model.Reservation;
+import bluederby.model.Room;
+import bluederby.model.BedType;
+
+rule "Queen Bed"
+
+    when
+        $reservation: Reservation(Room.bedType == BedType.QUEEN)
+    then
+        $reservation.setBaseRate($reservation.getBaseRate());
+end
+
+rule "Two Queen Beds"
+
+    when
+        $reservation: Reservation(Room.bedType == BedType.TWO_QUEEN)
+    then
+        $reservation.setBaseRate($reservation.getBaseRate() + 25.0);
+end
+
+rule "King Bed"
+
+    when
+        $reservation: Reservation(Room.bedType == BedType.KING)
+    then
+        $reservation.setBaseRate($reservation.getBaseRate() + 50.0);
+end
+
+
