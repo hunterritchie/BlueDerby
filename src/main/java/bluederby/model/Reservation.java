@@ -120,7 +120,7 @@ public class Reservation
     {
         m_bedType = bedType;
     }
-    public double getHolidayRateMulitplier()
+    public double getHolidayRateMultiplier()
     {
        return m_holidayRateMulitplier;
     }
