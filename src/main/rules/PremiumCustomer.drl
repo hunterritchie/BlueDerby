@@ -11,7 +11,7 @@ rule "Silver Members"
     when
         $reservation: Reservation(guest.membership.membershipType == MembershipType.SILVER)
     then
-        $reservation.setRate((int)($reservation.getRate() * .9));
+        $reservation.setBaseRate((int)($reservation.getBaseRate() * .9));
 end
 
 rule "Gold Members"
@@ -19,7 +19,7 @@ rule "Gold Members"
     when
         $reservation: Reservation(guest.membership.membershipType == MembershipType.GOLD)
     then
-        $reservation.setRate((int)($reservation.getRate() * .85));
+        $reservation.setBaseRate((int)($reservation.getBaseRate() * .85));
 end
 
 
@@ -28,6 +28,6 @@ rule "Platinum Members"
     when
         $reservation: Reservation(guest.membership.membershipType == MembershipType.PLATINUM)
     then
-        $reservation.setRate((int)($reservation.getRate() * .8));
+        $reservation.setBaseRate((int)($reservation.getBaseRate() * .8));
 end
 

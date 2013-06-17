@@ -30,7 +30,8 @@ public class ReservationTest
         int reservationId = reservation.getReservationId();
         int guestId = reservation.getGuestId();
 
-        double rate = reservation.getBaseRate();
+        double baseRate = reservation.getBaseRate();
+        double calculatedRate = reservation.getCalculatedRate();
         BedType bedType = reservation.getBedType();
 
         boolean guaranteed = reservation.getIsGuaranteed();

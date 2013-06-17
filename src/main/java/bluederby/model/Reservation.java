@@ -14,7 +14,6 @@ public class Reservation
     private BedType m_bedType;
     private Guest m_guest;
     private boolean m_isHoliday;
-    
     private double m_holidayRateMultiplier = 0.1;
 
     public Reservation(int guestId, BedType bedType, double baseRate, boolean isGuaranteed, Calendar startDate, Calendar endDate, boolean isHoliday) 
@@ -123,7 +122,7 @@ public class Reservation
     {
         m_bedType = bedType;
     }
-    public double getHolidayRateMulitplier()
+    public double getHolidayRateMultiplier()
     {
        return m_holidayRateMultiplier;
     }
