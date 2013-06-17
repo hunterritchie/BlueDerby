@@ -34,7 +34,7 @@ public class Reservation
     public Reservation(Guest guest, BedType bedType, int rate, boolean isGuaranteed, Calendar startDate, Calendar endDate) {
     	setGuest(guest);
     	m_bedType = bedType;
-    	m_rate = rate;
+    	m_baseRate = rate;
     	m_isGuaranteed = isGuaranteed;
     	m_startDate = startDate;
     	m_endDate = endDate;

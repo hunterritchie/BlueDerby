@@ -42,33 +42,33 @@ public class PremiumCustomerTest {
 	@Test
 	public void testNonMemberCustomer() {
 		session.execute(reservation);
-		assertEquals(DEFAULT_RATE,reservation.getRate());
+		assertEquals(DEFAULT_RATE,reservation.getBaseRate(), 0);
 	}
 
 	@Test
 	public void testBlueMembership() {
 		guest.getMembership().setStatus(MembershipType.BLUE);
 		session.execute(reservation);
-		assertEquals(DEFAULT_RATE,reservation.getRate());
+		assertEquals(DEFAULT_RATE,reservation.getBaseRate(), 0);
 	}
 
 	@Test
 	public void testSilverMembership() {
 		guest.getMembership().setStatus(MembershipType.SILVER);
 		session.execute(reservation);
-		assertEquals((int)(DEFAULT_RATE * .9),reservation.getRate());
+		assertEquals((int)(DEFAULT_RATE * .9),reservation.getBaseRate(), 0);
 	}
 	@Test
 	public void testGoldMembership() {
 		guest.getMembership().setStatus(MembershipType.GOLD);
 		session.execute(reservation);
-		assertEquals((int)(DEFAULT_RATE * .85),reservation.getRate());
+		assertEquals((int)(DEFAULT_RATE * .85),reservation.getBaseRate(), 0);
 	}
 	@Test
 	public void testPlatinumMembership() {
 		guest.getMembership().setStatus(MembershipType.PLATINUM);
 		session.execute(reservation);
-		assertEquals((int)(DEFAULT_RATE * .8),reservation.getRate());
+		assertEquals((int)(DEFAULT_RATE * .8),reservation.getBaseRate(), 0);
 	}
 
 }
