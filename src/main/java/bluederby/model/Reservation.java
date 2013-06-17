@@ -6,21 +6,27 @@ public class Reservation
 {
     private int m_reservationId;
     private int m_guestId;
-    private int m_rate;
+    private double m_baseRate;
+    private double m_calculatedRate;
     private boolean m_isGuaranteed;
     private Calendar m_startDate;
     private Calendar m_endDate;
     private BedType m_bedType;
+    private boolean m_isHoliday;
+    
+    private double m_holidayRateMulitplier = 0.1;
     private Guest m_guest;
 
-    public Reservation(int guestId, BedType bedType, int rate, boolean isGuaranteed, Calendar startDate, Calendar endDate) 
+    public Reservation(int guestId, BedType bedType, double baseRate, boolean isGuaranteed, Calendar startDate, Calendar endDate, boolean isHoliday) 
     {
         m_guestId = guestId;
         m_bedType = bedType;
-        m_rate = rate;
+        m_baseRate = baseRate;
+        m_calculatedRate = baseRate;
         m_isGuaranteed = isGuaranteed;
         m_startDate = startDate;
         m_endDate = endDate;
+        m_isHoliday = isHoliday;
     }
 
     public Reservation() {}
@@ -52,13 +58,22 @@ public class Reservation
         m_guestId = guestId;
     }
 
-    public int getRate()
+    public double getBaseRate()
     {
-        return m_rate;
+        return m_baseRate;
     }
-    public void setRate(int rate)
+    
+    public void setCalculatedRate(double calculatedRate)
     {
-        m_rate = rate;
+        m_calculatedRate = calculatedRate;
+    }
+    public double getCalculatedRate()
+    {
+        return m_calculatedRate;
+    }
+    public void setBaseRate(int baseRate)
+    {
+        m_baseRate = baseRate;
     }
 
     public boolean getIsGuaranteed()
@@ -68,6 +83,15 @@ public class Reservation
     public void setIsGuaranteed(boolean isGuaranteed)
     {
         m_isGuaranteed = isGuaranteed;
+    }
+    
+    public boolean getIsHoliday()
+    {
+        return m_isHoliday;
+    }
+    public void setIsHoliday(boolean isHoliday)
+    {
+        m_isHoliday = isHoliday;
     }
 
     public Calendar getStartDate()
@@ -95,6 +119,10 @@ public class Reservation
     public void setBedType(BedType bedType)
     {
         m_bedType = bedType;
+    }
+    public double getHolidayRateMulitplier()
+    {
+       return m_holidayRateMulitplier;
     }
 
 	public Guest getGuest() {
