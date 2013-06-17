@@ -24,13 +24,14 @@ public class ReservationTest
         Calendar startDate = new GregorianCalendar(2013, 6, 7);
         Calendar endDate = new GregorianCalendar(2013, 6, 8);
 
-        Reservation reservation = new Reservation(2, BedType.QUEEN, 125, true, startDate, endDate);
+        Reservation reservation = new Reservation(2, BedType.QUEEN, 125, true, startDate, endDate, false);
         reservation.setReservationId(1);
 
         int reservationId = reservation.getReservationId();
         int guestId = reservation.getGuestId();
 
-        int rate = reservation.getRate();
+        double baseRate = reservation.getBaseRate();
+        double calculatedRate = reservation.getCalculatedRate();
         BedType bedType = reservation.getBedType();
 
         boolean guaranteed = reservation.getIsGuaranteed();
