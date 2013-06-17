@@ -15,6 +15,7 @@ public class Reservation
     private boolean m_isHoliday;
     
     private double m_holidayRateMulitplier = 0.1;
+    private Guest m_guest;
 
     public Reservation(int guestId, BedType bedType, double baseRate, boolean isGuaranteed, Calendar startDate, Calendar endDate, boolean isHoliday) 
     {
@@ -30,7 +31,16 @@ public class Reservation
 
     public Reservation() {}
 
-    public int getReservationId()
+    public Reservation(Guest guest, BedType bedType, int rate, boolean isGuaranteed, Calendar startDate, Calendar endDate) {
+    	setGuest(guest);
+    	m_bedType = bedType;
+    	m_rate = rate;
+    	m_isGuaranteed = isGuaranteed;
+    	m_startDate = startDate;
+    	m_endDate = endDate;
+	}
+
+	public int getReservationId()
     {
         return m_reservationId;
     }
@@ -114,6 +124,14 @@ public class Reservation
     {
        return m_holidayRateMulitplier;
     }
+
+	public Guest getGuest() {
+		return m_guest;
+	}
+
+	public void setGuest(Guest m_guest) {
+		this.m_guest = m_guest;
+	}
 
 }
 
