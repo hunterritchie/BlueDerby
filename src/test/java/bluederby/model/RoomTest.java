@@ -27,7 +27,7 @@ public class RoomTest
 
         BedType bedType = BedType.KING;
 
-        Room room = new Room(1, 2, bedType, false, true, 1.2);
+        Room room = new Room(1, 2, bedType, false, true);
         room.setAmenities(amenityList);
 
         int roomNumber = room.getRoomNumber();
@@ -37,8 +37,6 @@ public class RoomTest
         boolean ice = room.getNearIceMachine();
         boolean lift = room.getNearElevator();
 
-        double roomTypeFactor = room.getRoomTypeFactor();
-
         ArrayList<Amenity> addons = room.getAmenities();
 
         assertEquals(roomNumber, 1);
@@ -47,8 +45,6 @@ public class RoomTest
 
         assertEquals(true, ice);
         assertEquals(false, lift);
-
-        assertEquals(roomTypeFactor, 1.2, 0);
 
         assertEquals(true, addons.contains(Amenity.TV));
         assertEquals(true, addons.contains(Amenity.MINIFRIDGE));

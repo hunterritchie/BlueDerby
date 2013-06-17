@@ -9,26 +9,23 @@ public class Room
     private BedType m_bedType;
     private boolean m_nearElevator;
     private boolean m_nearIceMachine;
-    private double m_roomTypeFactor;
     private ArrayList<Amenity> m_amenities;
 
-    public Room(int roomNumber, int floor, BedType bedType, boolean nearElevator, boolean nearIceMachine, double roomTypeFactor)
+    public Room(int roomNumber, int floor, BedType bedType, boolean nearElevator, boolean nearIceMachine)
     {
         m_roomNumber = roomNumber;
         m_floor = floor;
         m_bedType = bedType;
         m_nearElevator = nearElevator;
         m_nearIceMachine = nearIceMachine;
-        m_roomTypeFactor = roomTypeFactor;
     }
 
 
-    public Room(BedType bedType, boolean nearElevator, boolean nearIceMachine, double roomTypeFactor)
+    public Room(BedType bedType, boolean nearElevator, boolean nearIceMachine)
     {
         m_bedType = bedType;
         m_nearElevator = nearElevator;
         m_nearIceMachine = nearIceMachine;
-        m_roomTypeFactor = roomTypeFactor;
     }
 
     public Room()
@@ -79,15 +76,6 @@ public class Room
     public void setNearIceMachine(boolean nearIceMachine)
     {
         m_nearIceMachine = nearIceMachine;
-    }
-
-    public double getRoomTypeFactor()
-    {
-        return m_roomTypeFactor;
-    }
-    public void setRoomTypeFactor(double roomTypeFactor)
-    {
-        m_roomTypeFactor = roomTypeFactor;
     }
 
     public ArrayList<Amenity> getAmenities()

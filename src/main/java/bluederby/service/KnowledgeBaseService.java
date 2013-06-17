@@ -28,6 +28,8 @@ public class KnowledgeBaseService {
 //			hasErrors(kbuilder);
 			kbuilder.add(ResourceFactory.newClassPathResource("PremiumCustomer.drl"), ResourceType.DRL);
 			hasErrors(kbuilder);
+			kbuilder.add(ResourceFactory.newClassPathResource("RoomType.drl"), ResourceType.DRL);
+			hasErrors(kbuilder);
 			knowledgeBase = KnowledgeBaseFactory.newKnowledgeBase();
 			hasErrors(kbuilder);
 			knowledgeBase.addKnowledgePackages(kbuilder.getKnowledgePackages());
