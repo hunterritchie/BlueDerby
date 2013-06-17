@@ -17,13 +17,13 @@ public class HotelTest
         String name = hotel.getName();
         String address = hotel.getAddress();
 
-        int rate = hotel.getBaseRoomRate();
+        double rate = hotel.getBaseRoomRate();
         int numberOfRooms = hotel.getNumberOfRooms();
 
         assertEquals("Blue Derby Hotel", name);
         assertEquals("8260 Greensboro Dr.", address);
 
-        assertEquals(rate, 125);
+        assertEquals(rate, 125, 0.001);
         assertEquals(numberOfRooms, 20);
     }
 }

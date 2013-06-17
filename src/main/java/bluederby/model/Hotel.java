@@ -7,16 +7,16 @@ public class Hotel
 {
     private String m_name;
     private String m_address;
-    private int m_baseRoomRate;
+    private double m_baseRoomRate;
     private int m_numberOfRooms;
-
+    
     private ArrayList<Room> m_rooms;
     private ArrayList<Reservation> m_reservations;
     private ArrayList<Guest> m_guests;
     private ArrayList<Membership> m_memberships;
     private ArrayList<Group> m_groups;
 
-    public Hotel(String name, String address, int baseRoomRate)
+    public Hotel(String name, String address, double baseRoomRate)
     {
         m_name = name;
         m_address = address;
@@ -35,7 +35,7 @@ public class Hotel
         setupReservations();
 
     }
-
+    
     // default Hotel configuration
     private void setupRooms()
     {
@@ -53,22 +53,7 @@ public class Hotel
 
                 BedType bedType = BedType.values()[room % BedType.values().length];
 
-                double roomTypeFactor = 0;
-                switch (bedType) 
-                {
-                case QUEEN:
-                    roomTypeFactor = 1.0; 
-                    break;
-                case TWO_QUEEN:
-                    roomTypeFactor = 1.1; 
-                    break;
-                case KING:
-                    roomTypeFactor = 1.2; 
-                    break;
-                default:
-                }
-
-                Room aRoom = new Room(roomNumber, floor, bedType, nearElevator, nearIceMachine, roomTypeFactor);
+                Room aRoom = new Room(roomNumber, floor, bedType, nearElevator, nearIceMachine);
                 addRoom(aRoom);
             }
         }
@@ -88,8 +73,10 @@ public class Hotel
         Calendar startDate = Calendar.getInstance();
         Calendar endDate = startDate;
         endDate.add(Calendar.DAY_OF_YEAR, 7);
-
-        Reservation res = new Reservation(guestId, BedType.QUEEN, getBaseRoomRate(), false, startDate, endDate, false);
+        
+        BedType bedType = BedType.QUEEN;
+        
+        Reservation res = new Reservation(guestId, bedType, getBaseRoomRate(), false, startDate, endDate, false);
         addReservation(res);
     }
 
@@ -157,7 +144,7 @@ public class Hotel
         return m_address;
     }
 
-    public int getBaseRoomRate()
+    public double getBaseRoomRate()
     {
         return m_baseRoomRate;
     }
@@ -237,6 +224,6 @@ public class Hotel
         group.setGroupId(numberOfGroups);
         m_groups.add(group);
     }
-
+    
 }
 
