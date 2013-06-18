@@ -4,12 +4,10 @@ public class Group
 {
     private String m_groupName;
     private int m_groupId;
-    private double m_groupRateFactor;
 
-    public Group(String groupName, double groupRateFactor)
+    public Group(String groupName)
     {
         m_groupName = groupName;
-        m_groupRateFactor = groupRateFactor;
     }
 
     public Group() {}
@@ -31,15 +29,5 @@ public class Group
     {
         m_groupName = groupName;
     }
-
-    public double getGroupRateFactor()
-    {
-        return m_groupRateFactor;
-    }
-    public void setGroupRateFactor(double groupRateFactor)
-    {
-        m_groupRateFactor = groupRateFactor;
-    }
-
 }
 

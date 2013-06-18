@@ -120,15 +120,13 @@ public class Hotel
     private void setupGroups()
     {
         String groupName = "Brigands";
-        double groupRateFactor = 0.70;
         
-        Group group = new Group(groupName, groupRateFactor);
+        Group group = new Group(groupName);
         addGroup(group);
 
         groupName = "Redskins";
-        groupRateFactor = 0.80;
 
-        group = new Group(groupName, groupRateFactor);
+        group = new Group(groupName);
         addGroup(group);
     }
 
@@ -225,5 +223,33 @@ public class Hotel
         m_groups.add(group);
     }
     
+    public Group findGroupById(int id)
+    {
+    	Group return_group = null;
+    	for (int i = 0; i < m_groups.size(); i++)
+    	{
+    		Group group = m_groups.get(i);
+    		if (group.getGroupId() == id)
+    		{
+    			return_group = group;
+    		}
+    	}
+    	return return_group;
+    }
+    
+    public Group findGroupByName(String name)
+    {
+    	Group return_group = null;
+    	for (int i = 0; i < m_groups.size(); i++)
+    	{
+    		Group group = m_groups.get(i);
+    		if (group.getGroupName().compareTo(name) == 0)
+    		{
+    			return_group = group;
+    		}
+    	}
+    	return return_group;
+    }
+
 }
 

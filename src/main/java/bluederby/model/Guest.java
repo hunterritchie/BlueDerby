@@ -8,6 +8,7 @@ public class Guest
     private int m_groupId;
     private int m_membershipId;
 	private Membership m_membership;
+	private Group m_group;
 
     public Guest(String lastName, String firstName, int groupId, int membershipId)
     {
@@ -23,6 +24,13 @@ public class Guest
 		m_lastName = lastName;
 		m_firstName = firstName;
 		m_membership = membership;
+	}
+    
+    public Guest(String lastName, String firstName, Group group) {
+		m_lastName = lastName;
+		m_firstName = firstName;
+		m_group = group;
+        m_groupId = group.getGroupId();
 	}
 
 	public int getGuestId()
@@ -72,6 +80,16 @@ public class Guest
 
 	public Membership getMembership() {
 		return m_membership;
+	}
+	public void setMembership(Membership membership) {
+		m_membership = membership;
+	}
+	
+	public Group getGroup() {
+		return m_group;
+	}
+	public void setGroup(Group group) {
+		m_group = group;
 	}
 
 }

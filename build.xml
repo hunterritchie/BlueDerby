@@ -19,7 +19,7 @@
 	  <pathelement path="${build.dir.main}"/>
 	  <pathelement path="src/main/rules"/>
 	  <path refid="class.path.main"/>
-      <pathelement location="${java.lib.home}/junit.jar" /> 
+      <pathelement location="${java.lib.home}/junit4.jar" /> 
 	</path >
 	
 	<!-- ====================== -->

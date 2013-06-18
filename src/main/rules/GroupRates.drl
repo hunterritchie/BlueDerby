@@ -1,0 +1,29 @@
+package bluederby.grouprates
+
+import bluederby.model.Group;
+import bluederby.model.Guest;
+import bluederby.model.Reservation;
+
+rule "Set Group Rate for Brigands Reservations"
+    when
+        $reservation : Reservation(getGuest().getGroup() != null, getGuest().getGroup().getGroupName() == "Brigands" || getGuest().getGroup().getGroupId() == 1)
+        
+    then
+        $reservation.setCalculatedRate((int)($reservation.getBaseRate()*0.7));
+end
+
+rule "Set Group Rate for Redskins Reservations"
+    when
+        $reservation : Reservation(getGuest().getGroup() != null, getGuest().getGroup().getGroupName()== "Redskins" || getGuest().getGroup().getGroupId() == 2)
+        
+    then
+        $reservation.setCalculatedRate((int)($reservation.getBaseRate()*0.8));
+end
+
+rule "Set Group Rate for Red Hat Reservations"
+    when
+        $reservation : Reservation(getGuest().getGroup() != null, getGuest().getGroup().getGroupName() == "Red Hat" || getGuest().getGroup().getGroupId() == 3)
+        
+    then
+        $reservation.setCalculatedRate((int)($reservation.getBaseRate()*0.9));
+end

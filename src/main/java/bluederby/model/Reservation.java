@@ -32,6 +32,7 @@ public class Reservation
 
     public Reservation(Guest guest, BedType bedType, double baseRate, boolean isGuaranteed, Calendar startDate, Calendar endDate, boolean isHoliday) {
     	setGuest(guest);
+    	setGuestId(guest.getGuestId());
     	m_bedType = bedType;
     	m_baseRate = baseRate;
     	m_isGuaranteed = isGuaranteed;
