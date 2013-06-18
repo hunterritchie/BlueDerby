@@ -1,9 +1,13 @@
-//created on: Jun 11, 2013
-package bluederby.hotelrules
+package bluederby.roomrates
+
+import bluederby.model.Guest;
+import bluederby.model.Membership;
+import bluederby.model.MembershipType;
+import bluederby.model.Reservation;
 
 rule "holidayrate"
     when
        	reservation : Reservation(getIsHoliday()==true)
     then
-        modify(reservation) {setCalculatedRate(reservation.getBaseRate()*reservation.getHolidayRateMultiplier())};
+        modify(reservation) {setCalculatedRate(reservation.getBaseRate() + reservation.getHolidayRateAddition())};
 end
