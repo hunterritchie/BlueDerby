@@ -31,7 +31,7 @@ public class GroupRatesTest {
 	private static final double DEFAULT_RATE = 100;
 	static KnowledgeRuntimeLogger logger;
 	
-	public GroupRatesTest(){		
+	public GroupRatesTest(){
 		// Create Hotel
 		hotel = new Hotel("BlueDerby", "123 Sesame St", DEFAULT_RATE);
 		membership = new Membership();
