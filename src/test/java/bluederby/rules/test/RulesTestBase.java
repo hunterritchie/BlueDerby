@@ -1,7 +1,5 @@
 package bluederby.rules.test;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import org.drools.KnowledgeBase;
@@ -15,10 +13,10 @@ import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.StatelessKnowledgeSession;
 
-public abstract class BaseRulesTest implements IBaseRulesTestHelper {
+public abstract class RulesTestBase implements IBaseRulesTestHelper {
 	private KnowledgeBase knowledgeBase;
 
-	public BaseRulesTest() {
+	public RulesTestBase() {
 		try{
 			KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
