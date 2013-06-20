@@ -1,0 +1,92 @@
+
+package bluederby.availability
+
+import java.text.SimpleDateFormat;
+import bluederby.model.*;
+
+
+rule "Under Half"
+
+    when
+        $reservation    : Reservation()
+        $hotel          : Hotel(name == "Blue Derby")
+        Hotel( (double)( (double)getAvailabilityForDates($reservation.getStartDate(), $reservation.getEndDate()) / (double)getNumberOfRooms()) < 0.5 )
+    then
+        $hotel.setRateForDates($reservation.getStartDate(), $reservation.getEndDate(), (int)($reservation.getBaseRate() * 1));
+        System.out.format("-0- rate set for under half full %n");
+        #System.out.format("XXX numberOfReservations : %d%n", $hotel.getReservations().size());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
+        #System.out.format("XXX start date       : %s%n", sdf.format($reservation.getStartDate().getTime()));
+        #System.out.format("XXX end date         : %s%n", sdf.format($reservation.getEndDate().getTime()));
+        #double avail = $hotel.getAvailabilityForDates($reservation.getStartDate(), $reservation.getEndDate());
+        #System.out.format("XXX availability     : %f%n", avail);
+        #double rooms = $hotel.getNumberOfRooms();
+        #System.out.format("XXX number of rooms  : %f%n", rooms);
+        #double availc = (double)( (double)($hotel.getAvailabilityForDates($reservation.getStartDate(), $reservation.getEndDate()) / (double)$hotel.getNumberOfRooms()) );
+        #System.out.format("XXX availc           : %f%n", availc);
+
+end
+
+
+rule "Half to Three Quarters"
+
+    when
+        $reservation    : Reservation()
+        $hotel          : Hotel(name == "Blue Derby")
+        Hotel( (double)( (double)getAvailabilityForDates($reservation.getStartDate(), $reservation.getEndDate()) / (double)getNumberOfRooms()) >= 0.5 )
+        Hotel( (double)( (double)getAvailabilityForDates($reservation.getStartDate(), $reservation.getEndDate()) / (double)getNumberOfRooms()) < 0.75 )
+    then
+        $hotel.setRateForDates($reservation.getStartDate(), $reservation.getEndDate(), (int)($reservation.getBaseRate() * 1.1));
+        System.out.println("-1- rate set for under 3/4 full");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
+        #System.out.format("XXX start date       : %s%n", sdf.format($reservation.getStartDate().getTime()));
+        #System.out.format("XXX end date         : %s%n", sdf.format($reservation.getEndDate().getTime()));
+        #double avail = (double)$hotel.getAvailabilityForDates($reservation.getStartDate(), $reservation.getEndDate());
+        #System.out.format("XXX availability     : %f%n", avail);
+        #double availc = (double)$hotel.getAvailabilityForDates($reservation.getStartDate(), $reservation.getEndDate()) / (double)$hotel.getNumberOfRooms();
+        #System.out.format("XXX availc           : %f%n", availc);
+        #System.out.format("XXX number of rooms  : %d%n", $hotel.getNumberOfRooms());
+end
+
+
+rule "Mostly Full"
+
+    when
+        $reservation    : Reservation()
+        $hotel          : Hotel(name == "Blue Derby")
+        Hotel( (double)( (double)getAvailabilityForDates($reservation.getStartDate(), $reservation.getEndDate()) / (double)getNumberOfRooms()) >= 0.75 )
+        Hotel( (double)( (double)getAvailabilityForDates($reservation.getStartDate(), $reservation.getEndDate()) / (double)getNumberOfRooms()) < 0.99 )
+    then
+        $hotel.setRateForDates($reservation.getStartDate(), $reservation.getEndDate(), (int)($reservation.getBaseRate() * 1.2));
+        System.out.println("-2- rate set for full");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
+        #System.out.format("XXX start date       : %s%n", sdf.format($reservation.getStartDate().getTime()));
+        #System.out.format("XXX end date         : %s%n", sdf.format($reservation.getEndDate().getTime()));
+        #double avail = (double)$hotel.getAvailabilityForDates($reservation.getStartDate(), $reservation.getEndDate());
+        #System.out.format("XXX availability     : %f%n", avail);
+        #double availc = (double)Math.round($hotel.getAvailabilityForDates($reservation.getStartDate(), $reservation.getEndDate()) / (double)$hotel.getNumberOfRooms());
+        #System.out.format("XXX availc           : %f%n", availc);
+        #System.out.format("XXX number of rooms  : %d%n", $hotel.getNumberOfRooms());
+end
+
+
+rule "Overbooking"
+
+    when
+        $reservation    : Reservation()
+        $hotel          : Hotel(name == "Blue Derby")
+        Hotel( (double)( (double)getAvailabilityForDates($reservation.getStartDate(), $reservation.getEndDate()) / (double)getNumberOfRooms()) >= 0.99 )
+    then
+        $hotel.setRateForDates($reservation.getStartDate(), $reservation.getEndDate(), (int)($reservation.getBaseRate() * 1.3));
+        System.out.println("-3- rate set for overbooking");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
+        #System.out.format("XXX start date       : %s%n", sdf.format($reservation.getStartDate().getTime()));
+        #System.out.format("XXX end date         : %s%n", sdf.format($reservation.getEndDate().getTime()));
+        #double avail = (double)$hotel.getAvailabilityForDates($reservation.getStartDate(), $reservation.getEndDate());
+        #System.out.format("XXX availability     : %f%n", avail);
+        #double availc = (double)Math.round($hotel.getAvailabilityForDates($reservation.getStartDate(), $reservation.getEndDate()) / (double)$hotel.getNumberOfRooms());
+        #System.out.format("XXX availc           : %f%n", availc);
+        #System.out.format("XXX number of rooms  : %d%n", $hotel.getNumberOfRooms());
+end
+
+

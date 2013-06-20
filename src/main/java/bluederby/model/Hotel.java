@@ -1,7 +1,11 @@
 package bluederby.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
 
 public class Hotel
 {
@@ -16,6 +20,9 @@ public class Hotel
     private ArrayList<Membership> m_memberships;
     private ArrayList<Group> m_groups;
 
+    private HashMap<Calendar, Double> m_availabilityRates;
+
+
     public Hotel(String name, String address, double baseRoomRate)
     {
         m_name = name;
@@ -28,6 +35,8 @@ public class Hotel
         m_memberships = new ArrayList<Membership>();
         m_groups = new ArrayList<Group>();
 
+        m_availabilityRates = new HashMap<Calendar, Double>();
+            
         setupRooms();
         setupMemberships();
         setupGroups();
@@ -70,8 +79,8 @@ public class Hotel
             }
         }
         
-        Calendar startDate = Calendar.getInstance();
-        Calendar endDate = startDate;
+        Calendar startDate = new GregorianCalendar();
+        Calendar endDate = new GregorianCalendar();
         endDate.add(Calendar.DAY_OF_YEAR, 7);
         
         BedType bedType = BedType.QUEEN;
@@ -129,6 +138,68 @@ public class Hotel
         group = new Group(groupName);
         addGroup(group);
     }
+
+    public double getNumberOfReservationsOnDay(Calendar date)
+    {
+        double count = 0.0;
+        Iterator ite = getReservations().iterator();
+        Reservation res = new Reservation();
+        while (ite.hasNext())
+        {
+            res = (Reservation)ite.next();
+            if ( (0 >= res.getStartDate().compareTo(date)) && (0 <= res.getEndDate().compareTo(date)))
+            {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
+    public double getAvailabilityForDates(Calendar startDate, Calendar endDate)
+    {
+//SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+//System.out.format("getAvail start date      : %s%n", sdf.format(startDate.getTime()));
+//System.out.format("getAvail end date        : %s%n", sdf.format(endDate.getTime()));
+
+        double resCount = 0;
+
+        Calendar start = (Calendar)startDate.clone();
+        while (start.getTime().before(endDate.getTime()))
+        {
+            double count = getNumberOfReservationsOnDay(start);
+            resCount = Math.max(count, resCount);
+            start.add(Calendar.DAY_OF_YEAR, 1);
+        }
+//System.out.format("===--->> resCount = %d%n", resCount);
+//System.out.format("getAvailAFTER start date      : %s%n", sdf.format(startDate.getTime()));
+//System.out.format("getAvailAFTER end date        : %s%n", sdf.format(endDate.getTime()));
+        return resCount;
+    }
+
+    public void setRateForDates(Calendar startDate, Calendar endDate, double rate)
+    {
+        Calendar start = (Calendar)startDate.clone();
+        while (start.getTime().before(endDate.getTime()))
+        {
+            m_availabilityRates.put(start, new Double(rate));
+            start.add(Calendar.DAY_OF_YEAR, 1);
+        }
+        return;
+    }
+
+    public double getRateForDates(Calendar startDate, Calendar endDate)
+    {
+        double rate = 0.0;
+        double maxRate = 0.0;
+        Calendar start = (Calendar)startDate.clone();
+        while (start.getTime().before(endDate.getTime()))
+        {
+            rate = m_availabilityRates.get(start);
+            maxRate = Math.max(rate, maxRate);
+        }
+        return maxRate;
+    }
+
 
 
     // accessors

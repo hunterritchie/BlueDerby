@@ -1,6 +1,7 @@
 package bluederby.model;
 
 import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 public class Reservation
 {
@@ -18,6 +19,10 @@ public class Reservation
 
     public Reservation(int guestId, BedType bedType, double baseRate, boolean isGuaranteed, Calendar startDate, Calendar endDate, boolean isHoliday) 
     {
+//SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+//System.out.format("CTR start date      : %s%n", sdf.format(startDate.getTime()));
+//System.out.format("CTR end date        : %s%n", sdf.format(endDate.getTime()));
+
         m_guestId = guestId;
         m_bedType = bedType;
         m_baseRate = baseRate;
