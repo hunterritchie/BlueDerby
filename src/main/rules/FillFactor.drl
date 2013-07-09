@@ -1,0 +1,20 @@
+//created on: Jun 20, 2013
+package bluederby.scheduling
+
+import bluederby.model.Reservation;
+import bluederby.model.Hotel;
+
+global Hotel hotel;
+
+rule "Change Guaranteed Room When Close to Full"
+
+    when
+        $reservation : Reservation( getIsGuaranteed() )
+        Number( doubleValue > (hotel.getRooms().size() * 0.7) )
+        	from accumulate( Reservation(getIsGuaranteed() == true) from hotel.getReservations() ),
+        				count() )
+    then
+        $reservation.setIsGuaranteed(false);
+
+end
+

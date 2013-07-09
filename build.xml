@@ -19,7 +19,7 @@
 	  <pathelement path="${build.dir.main}"/>
 	  <pathelement path="src/main/rules"/>
 	  <path refid="class.path.main"/>
-      <pathelement location="${java.lib.home}/junit4.jar" /> 
+      <pathelement location="/projects/software/jbds/studio/plugins/org.junit_4.11.0.v201303080030/junit.jar" /> 
 	</path >
 	
 	<!-- ====================== -->
